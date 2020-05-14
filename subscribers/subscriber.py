@@ -39,12 +39,14 @@ def sensor_Data_Handler(topic: str, payload):
         print(e)
 
 
-
 def on_message(mosq, obj, msg):
     # This is the Master Call for saving MQTT Data into DB
-    print("MQTT Data Received...")
-    print("MQTT Topic: " + msg.topic)
-    print("Data: " + msg.payload)
+    try:
+        print("MQTT Data Received...")
+        print(msg.topic)
+        print(msg.payload)
+    except Exception as e:
+        print(e)
     sensor_Data_Handler(msg.topic, msg.payload)  # Save Data into DB Table
 
 
