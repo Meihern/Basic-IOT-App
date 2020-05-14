@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
-import json, sqlite3
-
+import json
+import sqlite3
 
 def on_connect(mosq, obj, rc):
     if rc == 0:
@@ -32,7 +32,8 @@ def sensor_Data_Handler(topic: str, payload):
     data = json.loads(payload)
     insert_query = insert_data_into_table_query(db_table_name)
     try:
-        conn = sqlite3.connect("Basic_Iot_DataBase.db")
+        db_name = "../Iot_DataBase.db"
+        conn = sqlite3.connect(db_name)
         conn.execute(insert_query, tuple(data.values()))
         conn.commit()
     except Exception as e:

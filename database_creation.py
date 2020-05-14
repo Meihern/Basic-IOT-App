@@ -2,7 +2,7 @@ import sqlite3
 
 
 def main():
-    db_name = "Basic_Iot_DataBase.db"
+    db_name = "Iot_DataBase.db"
     table_schema = """
         drop table if exists temperature_data;
         create table temperature_data(
@@ -35,7 +35,7 @@ def main():
 
     sqlite3.complete_statement(table_schema)
     curs.executescript(table_schema)
-
+    conn.commit()
     curs.close()
     conn.close()
 
