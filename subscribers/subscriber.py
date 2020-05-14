@@ -31,8 +31,6 @@ def sensor_Data_Handler(topic: str, payload):
     print(db_table_name)
     data = json.loads(payload)
     insert_query = insert_data_into_table_query(db_table_name)
-    print("Query : " + insert_query)
-    print(tuple(data.values()))
     try:
         conn = sqlite3.connect("Basic_Iot_DataBase.db")
         conn.execute(insert_query, tuple(data.values()))
